@@ -1,7 +1,10 @@
-# This could be done better, I am very rusty.
-totals = for elf <- File.read!("input.txt") |> String.split("\n\n"),
-                    do: String.split(elf, "\n") |> Enum.map(&Integer.parse/1) |> Enum.map(fn {n, _} -> n end) |> Enum.sum()
+elf_list = File.read!("input.txt") |> String.trim() |> String.split("\n\n")
 
+totals = for elf <- elf_list,
+  do: String.split(elf, "\n")
+  |> Enum.map(&Integer.parse/1)
+  |> Enum.map(&elem(&1,0))
+  |> Enum.sum()
 
 sorted = Enum.with_index(totals) |> List.keysort(0, :desc)
 
@@ -11,7 +14,7 @@ IO.inspect(elem(top,0))
 
 sumTopThree = sorted
   |> Enum.take(3)
-  |> Enum.map(fn {n, _} -> n end)
+  |> Enum.map(&elem(&1,0))
   |> Enum.sum()
 
 IO.inspect(sumTopThree)
