@@ -9,7 +9,7 @@ tally1 = Enum.map(packing_list, fn bag ->
   MapSet.intersection(comp1, comp2)
     |> MapSet.to_list()
     |> Enum.map(fn p -> (Enum.find_index(alphabet, fn l -> l === p end) + 1) end)
-    |> Enum.sum() # Force integer interpretation, this has to be a better way...
+    |> Enum.sum() # Force integer interpretation, there has to be a better way...
 end) |> Enum.sum()
 
 IO.puts(tally1)
@@ -23,7 +23,7 @@ tally2 = Enum.map(groups, fn group ->
     |> MapSet.intersection(bag3)
     |> MapSet.to_list()
     |> Enum.map(fn p -> (Enum.find_index(alphabet, fn l -> l === p end) + 1) end)
-    |> Enum.sum() # Force integer interpretation, this has to be a better way...
+    |> Enum.sum() # Force integer interpretation, there has to be a better way...
 end) |> Enum.sum()
 
 IO.puts(tally2)
